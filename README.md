@@ -20,7 +20,7 @@ A location based reminder library for Android. The library will provide about 5 
 
 It's very important to check out the sample app. Most techniques that you would want to implement are already implemented in the example.
 
-Download the sample app [here](https://github.com/Prashantd2355/RemindME-Library/releases/download/1.0/sample.apk)
+Download the sample app [here](https://github.com/Prashantd2355/RemindME-Sample/releases/download/1.0/sample.apk)
 
 ## Setup
 
