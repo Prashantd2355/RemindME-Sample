@@ -49,6 +49,39 @@ dependencies {
 }
 ```
 
+#### Step 3
+Don't forget to update `AndroidManifest.xml` add reminder service and receivers :
+
+``` xml
+	// Reminder background location service for track user location in background
+        <service
+            android:name="com.pdhameliya.remindmelibrary.service.ReminderService"
+            android:enabled="true"
+            android:exported="false" />
+	    
+	// Reminder alert service to show alert of reminder task on top of any application
+        <service
+            android:name="com.pdhameliya.remindmelibrary.service.RemiderAlertService"
+            android:enabled="true"
+            android:exported="false" />
+	    
+	// Receiver for start service after device restart
+        <receiver
+            android:name="com.pdhameliya.remindmelibrary.service.StartReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+	
+	// Receiver listen calendar events and show event alert
+        <receiver
+            android:name="com.pdhameliya.remindmelibrary.service.CalendarEventReceiver"
+            android:enabled="true" />
+```
+
+
 You can find the latest version of `RemindMe-Library` on the JitPack badge above the preview images.
 
 ## Usage
