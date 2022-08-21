@@ -1,3 +1,82 @@
-<resources>
-    <string name="app_name">RemindME-Sample</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">RemindME</string>
+    <string name="reminder_title">Reminder title</string>
+    <string name="reminder_desc">Reminder description</string>
+    <string name="reminder_location">Reminder location</string>
+    <string name="allow_notification">Show notification</string>
+    <string name="allow_notification_desc">By allowing notification, you will get reminder notification.</string>
+    <string name="allow_alert">Show alert message</string>
+    <string name="allow_alert_desc">By allowing alert, you will get reminder alert dialog.</string>
+    <string name="allow_sound">Play sound</string>
+    <string name="allow_sound_desc">By allowing sound, you will notified by alert sound.</string>
+    <string name="enter_reminder_title">Enter reminder title</string>
+    <string name="enter_reminder_desc">Enter reminder description</string>
+    <string name="enter_reminder_latitude">Enter latitude</string>
+    <string name="enter_reminder_longitude">Enter longitude</string>
+    <string name="submit">Submit</string>
+    <string name="select_reminder_type">Select reminder type</string>
+    <string name="location_based_reminder">Location based reminder</string>
+    <string name="landmarks">Landmark types</string>
+    <string name="place_list">Nearby place list</string>
+    <string name="add_location_based_reminder">Add reminder</string>
+    <string name="add_contact">Add contact</string>
+    <string name="add_call_reminder">Add call reminder</string>
+    <string name="calendar_based_reminder">Calendar based reminder</string>
+    <string name="nearby_landmarks">Nearby landmarks</string>
+    <string name="contact_book">Contact book</string>
+    <string name="phone_call_reminder">Phone call reminder</string>
+    <string name="enter_title_error">Enter valid reminder title</string>
+    <string name="enter_desc_error">Enter valid reminder description</string>
+    <string name="enter_latitude_error">Enter valid latitude</string>
+    <string name="enter_longitude_error">Enter valid longitude</string>
+    <string name="stop_service">Stop service</string>
+    <string name="title_select_location">Select Location</string>
+    <string name="long_press_marker">Reminder Location</string>
+    <string name="gps_denied">GPS permission denied</string>
+    <string name="title_activity_calendar_event">CalendarEventActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="addreminder">AddReminder</string>
+
+    <string name="event_title">Event title</string>
+    <string name="event_desc">Event description</string>
+    <string name="event_time">Event time</string>
+    <string name="event_location">Event location</string>
+    <string name="enter_event_title">Enter event title</string>
+    <string name="select_event_time">Select event time e.g. hh:mm</string>
+    <string name="enter_event_desc">Enter event description</string>
+    <string name="enter_event_latitude">Event latitude</string>
+    <string name="enter_event_longitude">Event longitude</string>
+    <string name="enter_event_title_error">Enter valid event title</string>
+    <string name="enter_event_desc_error">Enter valid event description</string>
+    <string name="select_event_date_error">select valid event date</string>
+    <string name="select_event_time_error">Select valid event time</string>
+
+    <string name="contact_title">Contact book title</string>
+    <string name="contact_desc">Contact book description</string>
+    <string name="contact_detail">Contact detail</string>
+    <string name="contact_book_location">Contact location</string>
+    <string name="contact_name">Contact name</string>
+    <string name="contact_number">Contact number</string>
+    <string name="enter_contact_title">Enter contact title</string>
+    <string name="enter_contact_desc">Enter contact description</string>
+    <string name="enter_contact_name">Enter contact name</string>
+    <string name="enter_contact_no">Enter contact number</string>
+    <string name="enter_contact_title_error">Enter valid contact title</string>
+    <string name="enter_contact_desc_error">Enter valid contact description</string>
+    <string name="enter_contact_name_error">Enter valid contact name</string>
+    <string name="enter_contact_no_error">Enter valid contact number</string>
+
+    <string name="call_location">Call location</string>
+
+
+
+<!--    <string name="google_maps_key" tools:ignore="ExtraTranslation">YOUR_GOOGLE_API_KEY</string>-->
+    <string name="google_maps_key" tools:ignore="ExtraTranslation">AIzaSyBRqzhYP2NxsCmrq97WmgTld20q2aaPHJs</string>
 </resources>
