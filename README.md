@@ -97,11 +97,13 @@ If you want to stop foreground service any time just call below function.
   
 ```
 
-#### Location Based Reminder
-This function is location-based, and in order to perform operations depending on location, a number of user inputs are needed. Using the given location coordinates as a starting point, the action can be started anywhere within a 500-meter radius. The alarm would sound, for instance, if the user entered the reminder's 500-meter location task radius.
+#### Reminder Listner
+Import reminder listner to receive reminder results you can check response code by [ResultCodes](#ResultCodes). Import this listner where you call create method of any reminder. This listner is for following methods:
 
-#### Step 1
-Import reminder listner to receive reminder results you can check response code by [ResultCodes](#ResultCodes).
+1. Location Based Reminder
+2. Calendar Events with one click navigate to event location
+3. Contact Book - Manage contact address book with no of visits log
+4. Phone Call Reminder - Remind to call on specified geographical area
 
 ```kotlin
 class MainActivity : AppCompatActivity(), ReminderListner{
@@ -120,8 +122,10 @@ class MainActivity : AppCompatActivity(), ReminderListner{
     }
 ```
 
-#### Step 2
-To get list of location based reminders by:
+#### Location Based Reminder
+This function is location-based, and in order to perform operations depending on location, a number of user inputs are needed. Using the given location coordinates as a starting point, the action can be started anywhere within a 500-meter radius. The alarm would sound, for instance, if the user entered the reminder's 500-meter location task radius.
+
+#### To get list of location based reminders:
 
 ```kotlin
  ...
@@ -132,8 +136,7 @@ var reminders = remindME.getLocationBasedReminderList(this)
 
 ```
 
-#### Step 3
-To create location based reminder:
+#### To create location based reminder:
 
 ```kotlin
  ...
@@ -156,6 +159,71 @@ var lbrActionParams = LBRActionParams(
 remindME.createLocationBasedReminder(lbrActionParams, this, this) 
 ...
 ```
+#### To update location based reminder:
+
+```kotlin
+ ...
+ 
+// Pass LBRData class object with updated value.
+var lbrData = LBRData(
+                        etReminderTitle.text.toString(), // Updated Reminder Title
+                        etReminderDesc.text.toString(), // Updated Reminder Description
+                        etReminderLattitude.text.toString().toDouble(), // Updated Task location accurate lattitude
+                        etReminderLongitude.text.toString().toDouble(), // Updated Task location accurate longitude
+                        chkNotification.isChecked, // pass boolean value for if want to show reminder alert
+                        chkAlert.isChecked, // pass boolean value if want to play sound when reminder trigger
+                        chkSound.isChecked, // boolean value for show reminder noitification
+                        false, // pass this default false; this is the flag for active and finished. true = finished & false = active
+                        Constant.lbrData.CreatedDate, // Pass this default value which comes from library data
+                        Constant.lbrData.UpdatedDate, // Pass this default value which comes from library data
+                        LBRId = Constant.lbrData.LBRId // This id is mendatory to pass for update record.
+                    )
+/** call updateLocationBasedReminder method
+ * this = Activity context
+ * lbrData = Reminder list updated data object
+ * this = Reminder listner
+ */
+remindME.updateLocationBasedReminder(this,lbrData, this) 
+...
+```
+#### For show reminder alert:
+To show reminder alert user must have to grant ACTION_MANAGE_OVERLAY_PERMISSION permission from settings. The library itself checked and send error code for that, on onReminderError need to handle error and match the error code that is 402 which is for overlay permission. You can manage like this:
+
+```kotlin
+ ...
+override fun onReminderError(errorCode: Int, message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        when (errorCode) {
+            403 -> {
+	    // If received 403 then just call below intent to allow OVERLAY_PERMISSION.
+                val intent =
+                    Intent(
+                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:${packageName}")
+                    )
+                startActivityForResult(intent, Constant.CODE_DRAW_OVER_OTHER_APP_PERMISSION)
+            }
+        }
+    }
+...
+```
+This check is for all reminders where alert you want to add alert option for reminder.
+
+#### To delete location based reminders:
+
+```kotlin
+ ...
+ 
+ /** call deleteLocationBasedReminder method
+ * this = Activity context
+ * data = Reminder list data object which you want to delete
+ */
+remindME.deleteLocationBasedReminder(this,data as LBRData)
+
+...
+
+```
+
 
 #### ResultCodes.
 
