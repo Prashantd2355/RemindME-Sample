@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity(), ReminderListner{
 ```
 
 #### Location Based Reminder
-This function is location-based, and in order to perform operations depending on location, a number of user inputs are needed. Using the given location coordinates as a starting point, the action can be started anywhere within a 500-meter radius. The alarm would sound, for instance, if the user entered the reminder's 500-meter location task radius.
+To set a reminder based on location, complete the steps below and call the 'createLocationBasedReminder()' function with the relevant action parameters. To use the create method of a location-based reminder, first initialise the library. Then, using the library access object, access the remining methods, which are create, update, and delete reminder. When the user enters 500 metres of the specified location's radius, the user will be alerted.
 
 #### To get list of location based reminders:
 
