@@ -363,7 +363,7 @@ var landmarkParams = LandmarkSearchParams(mCurrentLocation,5000,<GOOGLE_PLACES_A
  * this = Activity context
  * landmarkParams = Landmark search action params
  */
-remindME.searchNearbyPlace(this,landmarkParams){
+NearbyLandmarks().getNearbyLandmarkList(this,landmarkParams){
 //handle Result here
 }
 ...
