@@ -2,7 +2,6 @@
 
 A location based reminder library for Android. The library will provide about 5 diffrent location based reminder feature ready to implement.
 
-[![JitPack](https://jitpack.io/v/Prashantd2355/RemindME-Library.svg)](https://jitpack.io/#Prashantd2355/RemindME-Library)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kizitonwose/CalendarView/blob/master/LICENSE.md) 
 
 **With this library, you can access library features like this.**
@@ -15,6 +14,16 @@ A location based reminder library for Android. The library will provide about 5 
 3. Nearby Landmarks - find near by place
 4. Contact Book - Manage contact address book with no of visits log
 5. Phone Call Reminder - Remind to call on specified geographical area
+
+## Technologies Used
+<h2>IDE </h2><br>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Android_Studio_Trademark.svg/1280px-Android_Studio_Trademark.svg.png" style="height:100px; width:300px;">
+
+<h2>Languages Used</h2><br>
+  <img src="https://cdn.iconscout.com/icon/free/png-256/xml-file-2330558-1950399.png" style="height:100px; width:100px;"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Kotlin_logo.svg" style="height:100px; width:150px;">
+<h2>Databases:</h2><br>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/1024px-SQLite370.svg.png" style="height:100px; width:200px;">
+
 
 ## Sample project
 
@@ -45,7 +54,7 @@ Add RemindME-library to your app `build.gradle`:
 
 ```groovy
 dependencies {
-	implementation 'com.github.Prashantd2355:RemindME-Library:<latest-version>'
+	implementation 'com.github.Prashantd2355:RemindME-Library:1.0.0'
 }
 ```
 
