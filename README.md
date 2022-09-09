@@ -352,77 +352,182 @@ This feature of library is to request for search nearby landmarks list as per th
 ```kotlin
  ...
  
-var reminders = remindME.getCalendarEvent(this,date) // the date is represent to event date
+// 
+/** Create place search action params data class object.
+ * mCurrentLocation = current location
+ * 5000 = search are radius
+ */
+var landmarkParams = LandmarkSearchParams(mCurrentLocation,5000,<GOOGLE_PLACES_API_KEY>,<PLACE_TYPE>)
+
+/** call createCalendarEvent method
+ * this = Activity context
+ * landmarkParams = Landmark search action params
+ */
+remindME.searchNearbyPlace(this,landmarkParams){
+//handle Result here
+}
+...
+```
+#### Address Book
+The address book feature is to store addresses with contact detail, the library manages the total no of visits for selected address book location. User can get an idea about their total no of visits for perticular location.
+
+#### To get list of address book records:
+
+```kotlin
+ ...
+ 
+var reminders = remindME.getContactBookList(this) 
 
 ...
 
 ```
 
-#### To create calendar event:
+#### To create address book record:
 
 ```kotlin
  ...
  
-// Create calendar event params data class object and add event data.
-var ceActionParams =  CEActionParams(
-                        etEventTitle?.text.toString(), // Event title
-                        etEventDesc?.text.toString(), // Event Description
-                        mSelectedDateMillisecond!!, // event date
-                        mSelectedTimeMillisecond!!, // event time
-                        etEventLattitude?.text.toString().toDouble(), // Event location lattutude
-                        etEventLongitude?.text.toString().toDouble(),// Event location longitude
-                        isShowAlert = chkAlert!!.isChecked, // To show event alert
-                        isSoundEnabled = chkSound!!.isChecked, // To enable sound with notification
-                        isNotification = chkNotification!!.isChecked // To enable Notification
+// Create address book params data class object and add data.
+var abActionParams =  ABActionParams(
+                        etContactTitle.text.toString(), // title of address book
+                        etContactDesc.text.toString(), //addressbook description
+                        etContactName.text.toString(), // Contact person name
+                        etContactNo.text.toString(), // Contact Number
+                        etContactLattitude.text.toString().toDouble(), // Address book location lattitude
+                        etContactLongitude.text.toString().toDouble(), // Address book location longitude
+                        chkAlert.isChecked,
+                        isSoundEnabled = chkSound.isChecked,
+                        isNotification = chkNotification.isChecked
                     )
-/** call createCalendarEvent method
- * ceActionParams = Event Action Params object
+/** call addContact method
+ * abActionParams = Address Book Action Params object
  * this = Reminder listner
  * this = Activity context
  */
-remindME.createCalendarEvent(ceActionParams, this, this) 
+remindME.addContact(abActionParams, this, this) 
 ...
 ```
-#### To update calendar event:
+#### To update address book record:
 
 ```kotlin
  ...
  
-// Pass LBRData class object with updated value.
-var ceData = CEData(
-                        etEventTitle?.text.toString(), // Updated event title
-                        etEventDesc?.text.toString(), // Updated event description
-                        mSelectedDateMillisecond!!, // Updated event date
-                        mSelectedTimeMillisecond!!, // Updated event time
-                        etEventLattitude?.text.toString().toDouble(), // Updated event location lattitude
-                        etEventLongitude?.text.toString().toDouble(), // Updated event location longitude
-                        chkNotification?.isChecked, // pass boolean value for if want to show event notification
-                        chkAlert?.isChecked, 
-                        chkSound!!.isChecked,
-                        false, // pass this default false; this is the flag for active and finished. true = finished & false = active
-                        ceData.CreatedDate,
-                        ceData.UpdatedDate,
-                        ceData.CEId // pass the calendar event ID for event update
+// Pass CBData class object with updated value.
+var cbData = CBData(
+                       etContactTitle.text.toString(),
+                        etContactDesc.text.toString(),
+                        etContactName.text.toString(),
+                        etContactNo.text.toString(),
+                        etContactLattitude.text.toString().toDouble(),
+                        etContactLongitude.text.toString().toDouble(),
+                        Constant.cbData.CBNoOfVisit,
+                        chkNotification.isChecked,
+                        chkAlert.isChecked,
+                        chkSound.isChecked,
+                        false,
+                        Constant.cbData.CreatedDate,
+                        Constant.cbData.UpdatedDate,
+                        Constant.cbData.CBId
                     )
 /** call updateCalendarEvent method
  * this = Activity context
  * ceData = Event list updated data object
  * this = Reminder listner
  */
-remindME.updateCalendarEvent(this,lbrData, this) 
+remindME.updateContactBook(this,lbrData, this) 
 ...
 ```
 
-#### To delete event:
+#### To delete record:
 
 ```kotlin
  ...
  
- /** call deleteCalendarEvent method
+ /** call deleteContact method
  * this = Activity context
- * data = Event list data object which you want to delete
+ * data = address book list data object which you want to delete
  */
-remindME.deleteCalendarEvent(this,data as CEData)
+remindME.deleteContact(this,data as CBData)
+
+...
+
+```
+
+#### Phone call reminder
+The phone call reminder is similar like location based reminder, user will be notify to make aphone call on specific location when they reach. The user will get an alert from where directly navigate to make a phone call.
+
+#### To get list of phone call reminder:
+
+```kotlin
+ ...
+ 
+var reminders = remindME.getCallReminderList(this) 
+
+...
+
+```
+
+#### To create phone call reminder:
+
+```kotlin
+ ...
+ 
+// Create call reminder params data class object and add data.
+var crActionParams =  CRActionParams(
+                        etContactName.text.toString(),
+                        etContactNo.text.toString(),
+                        etContactLattitude.text.toString().toDouble(),
+                        etContactLongitude.text.toString().toDouble(),
+                        chkAlert.isChecked,
+                        isSoundEnabled = chkSound.isChecked,
+                        isNotification = chkNotification.isChecked
+                    )
+/** call createCallReminder method
+ * crActionParams = Phone call reminder Action Params object
+ * this = Reminder listner
+ * this = Activity context
+ */
+remindME.createCallReminder(crActionParams, this, this) 
+...
+```
+#### To update phone call reminder:
+
+```kotlin
+ ...
+ 
+// Pass CBData class object with updated value.
+var crData = CRData(
+                        etContactName.text.toString(),
+                        etContactNo.text.toString(),
+                        etContactLattitude.text.toString().toDouble(),
+                        etContactLongitude.text.toString().toDouble(),
+                        chkNotification.isChecked,
+                        chkAlert.isChecked,
+                        chkSound.isChecked,
+                        false,
+                        Constant.crData.CreatedDate,
+                        Constant.crData.UpdatedDate,
+                        Constant.crData.CRId
+                    )
+/** call updateCallReminder method
+ * this = Activity context
+ * crData = Phone call reminder list updated data object
+ * this = Reminder listner
+ */
+remindME.updateCallReminder(this,crData, this) 
+...
+```
+
+#### To delete record:
+
+```kotlin
+ ...
+ 
+ /** call deleteContact method
+ * this = Activity context
+ * data = Phone call reminder list data object which you want to delete
+ */
+remindME.deleteCallReminder(this,crData as CRData)
 
 ...
 
