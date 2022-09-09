@@ -6,7 +6,8 @@ A location based reminder library for Android. The library will provide about 5 
 
 **With this library, you can access library features like this.**
 
-![Preview](https://raw.githubusercontent.com/Prashantd2355/RemindME-Sample/master/images/image-all.png)
+![Preview](https://raw.githubusercontent.com/Prashantd2355/RemindME-Sample/master/images/image-all_1.png)
+![Preview](https://raw.githubusercontent.com/Prashantd2355/RemindME-Sample/master/images/image-all_2.png)
 
 ## Methods
 1. Location Based Reminder
@@ -23,13 +24,6 @@ A location based reminder library for Android. The library will provide about 5 
   <img src="https://cdn.iconscout.com/icon/free/png-256/xml-file-2330558-1950399.png" style="height:100px; width:100px;"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Kotlin_logo.svg" style="height:100px; width:150px;">
 <h2>Databases:</h2><br>
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/1024px-SQLite370.svg.png" style="height:100px; width:200px;">
-
-
-## Sample project
-
-It's very important to check out the sample app. Most techniques that you would want to implement are already implemented in the example.
-
-Download the sample app [here](https://github.com/Prashantd2355/RemindME-Sample/releases/download/1.0/sample.apk)
 
 ## Setup
 
@@ -266,6 +260,173 @@ remindME.deleteLocationBasedReminder(this,data as LBRData)
 
 ```
 
+#### Calendar Event
+To create a calendar event based on specific date call the create calendar event method with required action parameters. Once event triggered user will be notified via reminder alert on device screen and from where can start the navigation toward event location. Below are some guide about how to access calendar event feature of library.
+
+#### To get list of calendar events:
+
+```kotlin
+ ...
+ 
+var reminders = remindME.getCalendarEvent(this,date) // the date is represent to event date
+
+...
+
+```
+
+#### To create calendar event:
+
+```kotlin
+ ...
+ 
+// Create calendar event params data class object and add event data.
+var ceActionParams =  CEActionParams(
+                        etEventTitle?.text.toString(), // Event title
+                        etEventDesc?.text.toString(), // Event Description
+                        mSelectedDateMillisecond!!, // event date
+                        mSelectedTimeMillisecond!!, // event time
+                        etEventLattitude?.text.toString().toDouble(), // Event location lattutude
+                        etEventLongitude?.text.toString().toDouble(),// Event location longitude
+                        isShowAlert = chkAlert!!.isChecked, // To show event alert
+                        isSoundEnabled = chkSound!!.isChecked, // To enable sound with notification
+                        isNotification = chkNotification!!.isChecked // To enable Notification
+                    )
+/** call createCalendarEvent method
+ * ceActionParams = Event Action Params object
+ * this = Reminder listner
+ * this = Activity context
+ */
+remindME.createCalendarEvent(ceActionParams, this, this) 
+...
+```
+#### To update calendar event:
+
+```kotlin
+ ...
+ 
+// Pass LBRData class object with updated value.
+var ceData = CEData(
+                        etEventTitle?.text.toString(), // Updated event title
+                        etEventDesc?.text.toString(), // Updated event description
+                        mSelectedDateMillisecond!!, // Updated event date
+                        mSelectedTimeMillisecond!!, // Updated event time
+                        etEventLattitude?.text.toString().toDouble(), // Updated event location lattitude
+                        etEventLongitude?.text.toString().toDouble(), // Updated event location longitude
+                        chkNotification?.isChecked, // pass boolean value for if want to show event notification
+                        chkAlert?.isChecked, 
+                        chkSound!!.isChecked,
+                        false, // pass this default false; this is the flag for active and finished. true = finished & false = active
+                        ceData.CreatedDate,
+                        ceData.UpdatedDate,
+                        ceData.CEId // pass the calendar event ID for event update
+                    )
+/** call updateCalendarEvent method
+ * this = Activity context
+ * ceData = Event list updated data object
+ * this = Reminder listner
+ */
+remindME.updateCalendarEvent(this,lbrData, this) 
+...
+```
+
+#### To delete event:
+
+```kotlin
+ ...
+ 
+ /** call deleteCalendarEvent method
+ * this = Activity context
+ * data = Event list data object which you want to delete
+ */
+remindME.deleteCalendarEvent(this,data as CEData)
+
+...
+
+```
+
+#### Nearby Landmarks
+This feature of library is to request for search nearby landmarks list as per the choice. You can see below method call with required parameters to search nearby place type. In order to search any nearby place type need to pass some necessory parametrs to call search nearby place request from library. The result is in the form of JSON object with place list and detail.
+
+#### To request for nearby place search:
+
+```kotlin
+ ...
+ 
+var reminders = remindME.getCalendarEvent(this,date) // the date is represent to event date
+
+...
+
+```
+
+#### To create calendar event:
+
+```kotlin
+ ...
+ 
+// Create calendar event params data class object and add event data.
+var ceActionParams =  CEActionParams(
+                        etEventTitle?.text.toString(), // Event title
+                        etEventDesc?.text.toString(), // Event Description
+                        mSelectedDateMillisecond!!, // event date
+                        mSelectedTimeMillisecond!!, // event time
+                        etEventLattitude?.text.toString().toDouble(), // Event location lattutude
+                        etEventLongitude?.text.toString().toDouble(),// Event location longitude
+                        isShowAlert = chkAlert!!.isChecked, // To show event alert
+                        isSoundEnabled = chkSound!!.isChecked, // To enable sound with notification
+                        isNotification = chkNotification!!.isChecked // To enable Notification
+                    )
+/** call createCalendarEvent method
+ * ceActionParams = Event Action Params object
+ * this = Reminder listner
+ * this = Activity context
+ */
+remindME.createCalendarEvent(ceActionParams, this, this) 
+...
+```
+#### To update calendar event:
+
+```kotlin
+ ...
+ 
+// Pass LBRData class object with updated value.
+var ceData = CEData(
+                        etEventTitle?.text.toString(), // Updated event title
+                        etEventDesc?.text.toString(), // Updated event description
+                        mSelectedDateMillisecond!!, // Updated event date
+                        mSelectedTimeMillisecond!!, // Updated event time
+                        etEventLattitude?.text.toString().toDouble(), // Updated event location lattitude
+                        etEventLongitude?.text.toString().toDouble(), // Updated event location longitude
+                        chkNotification?.isChecked, // pass boolean value for if want to show event notification
+                        chkAlert?.isChecked, 
+                        chkSound!!.isChecked,
+                        false, // pass this default false; this is the flag for active and finished. true = finished & false = active
+                        ceData.CreatedDate,
+                        ceData.UpdatedDate,
+                        ceData.CEId // pass the calendar event ID for event update
+                    )
+/** call updateCalendarEvent method
+ * this = Activity context
+ * ceData = Event list updated data object
+ * this = Reminder listner
+ */
+remindME.updateCalendarEvent(this,lbrData, this) 
+...
+```
+
+#### To delete event:
+
+```kotlin
+ ...
+ 
+ /** call deleteCalendarEvent method
+ * this = Activity context
+ * data = Event list data object which you want to delete
+ */
+remindME.deleteCalendarEvent(this,data as CEData)
+
+...
+
+```
 
 #### ResultCodes.
 
