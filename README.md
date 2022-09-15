@@ -2,8 +2,6 @@
 
 A location based reminder library for Android. The library will provide about 5 diffrent location based reminder feature ready to implement.
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kizitonwose/CalendarView/blob/master/LICENSE.md) 
-
 **With this library, you can access library features like this.**
 
 ![Preview](https://raw.githubusercontent.com/Prashantd2355/RemindME-Sample/master/images/image-all_1.png)
